@@ -8,16 +8,21 @@ sys.setdefaultencoding('utf-8')
 
 print '正在从ICBC抓取数据......'
 
-# beginDate = str(date.today())
-# endDate = str(date.today())
-beginDate = sys.argv[1]
-endDate = sys.argv[2]
+if len(sys.argv) == 1:
+    beginDate = str(date.today())
+    endDate = str(date.today())
+elif len(sys.argv) == 3:
+    beginDate = sys.argv[1]
+    endDate = sys.argv[2]
+else:
+    print 'Input parameters error'
+    exit();
 
 print 'beginDate:' + beginDate
 print 'endDate:' + endDate
 
 baseurl = 'http://www.icbc.com.cn/ICBCDynamicSite/Optimize/Quotation/QuotationListIframe.aspx' \
-      '?variety=2&beginDate=' + beginDate + '&endDate=' + endDate + '&currency=USD&ppublishDate='
+          '?variety=2&beginDate=' + beginDate + '&endDate=' + endDate + '&currency=USD&ppublishDate='
 currentPage = 1
 count = 0
 url = ''
@@ -36,7 +41,7 @@ while True:
         strValue += i.string
         strValue += '\t'
         if count > 2:
-		strValue +='\t'
+            strValue += '\t'
         if count == 7:
             print strValue
             count = 0
