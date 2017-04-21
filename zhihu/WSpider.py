@@ -5,15 +5,16 @@ import urllib2
 import cookielib
 import logging
 
+
 class WSpider(object):
     def __init__(self):
-        #init params
+        # init params
         self.url_path = None
         self.post_data = None
         self.header = None
         self.domain = None
         self.operate = None
-        #init cookie
+        # init cookie
         self.cookiejar = cookielib.LWPCookieJar()
         self.opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(self.cookiejar))
         urllib2.install_opener(self.opener)
@@ -37,8 +38,9 @@ class WSpider(object):
     """
     Save captcha to local
     """
+
     def saveCaptcha(self, captcha_url, outpath, save_mode='wb'):
-        picture = self.opener.open(captcha_url).read() #用openr访问验证码地址,获取cookie
+        picture = self.opener.open(captcha_url).read()  # 用openr访问验证码地址,获取cookie
         local = open(outpath, save_mode)
         local.write(picture)
         local.close()
@@ -54,6 +56,7 @@ class WSpider(object):
         content：文本内容
         out_path: 输出路径
     """
+
     def output(self, content, out_path, save_mode="w"):
         fw = open(out_path, save_mode)
         fw.write(content)
@@ -67,6 +70,7 @@ class WSpider(object):
     logger.error('logger error message')
     logger.critical('logger critical message')
     """
+
     def createLogger(self, logger_name, log_file):
         # 创建一个logger
         logger = logging.getLogger(logger_name)
