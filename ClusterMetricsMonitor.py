@@ -24,7 +24,7 @@ def do_integrate(x1, y1, x2, y2):
     x = symbols('x')
     return float(integrate(k * x + b, (x, x1, x2)))
 
-
+# file_path = '/Users/bianzexin/Downloads/ClusterMetricsForYunying_20170516.data'
 file_path += '_' + time.strftime('%Y%m%d', time.localtime(time.time())) + '.data'
 if os.path.isfile(file_path):
     os.remove(file_path)
@@ -51,6 +51,7 @@ while count < 145:
         count += 1
         time.sleep(1)  # 每10分钟获取一次cluster_metrics
     except:
+        count += 1
         print 'get cluster_metrics error'
         continue
 
