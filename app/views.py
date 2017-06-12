@@ -1,4 +1,4 @@
-from flaskapp import app
+from app import app
 
 
 @app.route('/')
